@@ -1,5 +1,5 @@
 
-function renderLicenseBadge(license) {
+function renderLicenseBadge(data) {
     if (data.license == "Apache 2.0") {
         return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
         
@@ -14,32 +14,37 @@ function renderLicenseBadge(license) {
     if (data.license == "BSD 2-Clause") {
         return `[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)`;
     }
+    else {
+        return ``;
+    }
 
 }
 
 
-function renderLicenseSection(license) {
+function renderLicenseSection(data) {
     if (data.license == "Apache 2.0") {
-        return `This application utilizes the Apache 2.0 license.`;
+        return `This application utilizes the Apache 2.0 license. Click on the badge above for more information.`;
         
     }
     if (data.license == "Boost 1.0") {
-        return `This application utilizes the Boost 1.0 license.`;
+        return `This application utilizes the Boost 1.0 license. Click on the badge above for more information.`;
     }
     if (data.license == "BSD 3-Clause") {
-        return `This application utilizes the BSD 3-Clause license.`;
+        return `This application utilizes the BSD 3-Clause license. Click on the badge above for more information.`;
         
     }
     if (data.license == "BSD 2-Clause") {
-        return `This application utilizes the BSD 2-Clause license.`;
+        return `This application utilizes the BSD 2-Clause license. Click on the badge above for more information.`;
+    }
+    else {
+        return ``;
     }
 }
 
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    return `#${data.title}
+    return `# ${data.title}
 
-${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data)}
 
 ## Description
 
@@ -68,7 +73,7 @@ ${data.credits}
 
 ## License
 
-${renderLicenseSection(data.license)}
+${renderLicenseSection(data)}
 
 ## Tests
 
@@ -76,9 +81,11 @@ ${data.tests}
 
 ## Questions
 
-${data.github}
-${data.githubURL}
-${data.email}
+Github username: ${data.github}
+
+Github URL ${data.githubURL}
+
+Email: ${data.email}
 `;
 }
 

@@ -28,7 +28,7 @@ const questions = [
         type: "list",
         message: "Select one of the following licenses, if applicable.",
         name: "license",
-        choices: ["Apache 2.0", "Boost 1.0", "BSD 3-Clause", "BSD 2-Clause"],
+        choices: ["Apache 2.0", "Boost 1.0", "BSD 3-Clause", "BSD 2-Clause", "None"],
     },
     {
         type: "input",
@@ -58,20 +58,18 @@ const questions = [
 ];
 
 
-
-// TODO: Create a function to initialize app
 function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
+            const filename = `${data.title.toLowerCase().split(' ').join('')}_README.md`;
             console.log(data);
-            fs.writeFile('README.md', generateMarkdown(data), (err) => {
+            fs.writeFile(filename, generateMarkdown(data), (err) => {
                 err ? console.error(err) : console.log('Success!')
             })
         })
 
 }
 
-// Function call to initialize app
 init();
 
